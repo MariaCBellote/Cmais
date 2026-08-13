@@ -1,0 +1,13 @@
+#include <iostream>
+#include <format>
+#include <string>
+
+ int main()
+{
+ int id = 42;
+ double pi = 3.14159;
+
+ std::string msg = std::format("ID: {}, PI: {:.2f}", id, pi); //usado para formatação
+ std::cout << msg << '\n';
+ return 0;
+}
