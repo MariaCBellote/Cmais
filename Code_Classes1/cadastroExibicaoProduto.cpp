@@ -30,7 +30,7 @@ public:
     void aplicarDesconto(double per)
     {
 
-        preco = preco * (1 - (percentual / 100));
+        preco = preco * (1 - (per / 100));
         preco= preco*quantidade;
     }
 
