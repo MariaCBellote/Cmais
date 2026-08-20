@@ -46,14 +46,64 @@ public:
     }
 
     // Construtor parametrizado
-    Livro(std::string titulo, std::string autor, int anoPublicado) {
-        this->titulo = setTitulo(titulo);
-        this->autor = setAutor(autor);
-        if(anoPublicado>0){
-         this->anoPublicado = setAno(anoPublicado);
-        }
-        
+  Livro(std::string titulo, std::string autor, int anoPublicado) {
+    setTitulo(titulo);
+    setAutor(autor);
+
+    if (anoPublicado > 0) {
+        setAno(anoPublicado);
     }
+}
+
+/*
+
+Livro(std::string titulo, std::string autor, int anoPublicado)
+    : titulo(titulo), autor(autor), anoPublicado(anoPublicado)
+{
+}
+
+
+Com condicional:
+Livro(std::string titulo, std::string autor, int anoPublicado)
+    : titulo(titulo),
+      autor(autor),
+      anoPublicado(anoPublicado > 0 ? anoPublicado : 0)
+{
+}
+
+
+OU
+
+Livro(std::string titulo, std::string autor, int anoPublicado)
+    : titulo(titulo),
+      autor(autor),
+      anoPublicado(0)
+{
+    if (anoPublicado > 0) {
+        this->anoPublicado = anoPublicado;
+    }
+    else {
+        std::cout << "Ano inválido!\n";
+    }
+}
+
+*/
+
+void pedirDados(){
+    std::string nome, autor;
+    int ano;
+    std::cout << "Diga o nome do livro:\n";
+    std::getline(std::cin >> nome);
+    setTitulo(nome);
+    std::cout << "Diga o nome do autor:\n";
+     std::getline(std::cin >> autor);
+    setAutor(autor);
+    std::cout << "Diga o ano de publicação:\n";
+     std::getline(std::cin >> ano);
+    setAno(ano);
+    
+}
+
 
     void imprimirDados(){
          std::cout << "### Livro ###\n";
@@ -69,6 +119,8 @@ int main(){
     Livro livro1;
     Livro livro2("Computação","Jose",2018);
     livro2.imprimirDados();
+    livro1.pedirDados();
+    livro1.imprimirDados();
 
 
 }
