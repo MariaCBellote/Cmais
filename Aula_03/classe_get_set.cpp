@@ -4,99 +4,100 @@
 
 class Produto
 {
-    private:
+private:
     int codigo;
     double preco;
     int quantidade;
     double percentual;
 
 public:
-    //get e set preco
-    double getPreco() const{
+
+    // GET e SET PREÇO
+    double getPreco() const {
         return preco;
     }
 
-    void setPreco(double novoPreco){
-        std::cin >> novoPreco;
-        if(novoPreco<0){
+    void setPreco(double novoPreco) {
+        if (novoPreco < 0) {
             std::cout << "Preço inválido!\n";
         }
-        else{
-            preco=novoPreco;
+        else {
+            preco = novoPreco;
         }
-       
     }
-    
-    //get e set codigo
-    double getCod() const{
+
+    // GET e SET CÓDIGO
+    int getCod() const {
         return codigo;
     }
 
-    void setCod(double novoCodigo){
-        std::cin >> novoCodigo;
-          if(novoCodigo<0){
+    void setCod(int novoCodigo) {
+        if (novoCodigo < 0) {
             std::cout << "Código inválido!\n";
         }
-        else{
-           codigo=novoCodigo;
+        else {
+            codigo = novoCodigo;
         }
-        
     }
 
-    //get e set quantidade
-    double getQuantidade() const{
+    // GET e SET QUANTIDADE
+    int getQuantidade() const {
         return quantidade;
     }
 
-    void setQuantidade(double novoQuantidade){
-        std::cin >>novoQuantidade;
-          if(novoQuantidade<0){
-            std::cout << "Qunatidade inválida!\n";
+    void setQuantidade(int novoQuantidade) {
+        if (novoQuantidade < 0) {
+            std::cout << "Quantidade inválida!\n";
         }
-        else{
-           quantidade=novoQuantidade;
+        else {
+            quantidade = novoQuantidade;
         }
-        
     }
 
-    //get e set percentual
-    double getPercentual() const{
+    // GET e SET PERCENTUAL
+    double getPercentual() const {
         return percentual;
     }
 
-    void setPercentual(double novoPercentual){
-         std::cin >>novoPercentual;
-          if(percentnoual<0){
+    void setPercentual(double novoPercentual) {
+        if (novoPercentual < 0) {
             std::cout << "Percentual inválido!\n";
         }
-        else{
-            percentual=novoPercentual;
+        else {
+            percentual = novoPercentual;
         }
-        
     }
 
-    //funções
+    // FUNÇÃO PARA DEFINIR OS DADOS
     void definirDados()
     {
+        int novoCodigo;
+        double novoPreco;
+        int novaQuantidade;
+        double novoPercentual;
+
         std::cout << "### Cadastro de Produto ###\n";
-        std::cout << "Digite o codigo: "; 
-        setCod(codigo);
+
+        std::cout << "Digite o codigo: ";
+        std::cin >> novoCodigo;
+        setCod(novoCodigo);
 
         std::cout << "Digite o preco: ";
-        setPreco(preco);
+        std::cin >> novoPreco;
+        setPreco(novoPreco);
 
         std::cout << "Digite a quantidade: ";
-        setQuantidade(quantidade);
+        std::cin >> novaQuantidade;
+        setQuantidade(novaQuantidade);
 
         std::cout << "Digite o percentual de desconto: ";
-        setPercentual(percentual);
-        
+        std::cin >> novoPercentual;
+        setPercentual(novoPercentual);
     }
 
     void aplicarDesconto(double per)
     {
-
-        preco = preco * (1 - (per / 100))*quantidade;
+        preco = preco * (1 - (per / 100));
     }
 
     double calcularValorEstoque()
@@ -107,10 +108,15 @@ public:
     void exibirDados()
     {
         aplicarDesconto(percentual);
+
         std::cout << "### Produto ###\n";
+
         std::string mensagem = std::format(
-            "Codigo: {} | Preco: {} | Quantidade: {}",
-            getCod(codigo), getPreco(preco), getQuantidade(quantidade));
+            "Codigo: {} | Preco: {:.2f} | Quantidade: {}",
+            getCod(),
+            getPreco(),
+            getQuantidade()
+        );
 
         std::cout << mensagem << "\n";
     }
@@ -119,11 +125,17 @@ public:
 int main()
 {
     Produto produto1;
+
     produto1.definirDados();
+
     double estoque = produto1.calcularValorEstoque();
-    std::cout << " \n";
+
+    std::cout << "\n";
+
     produto1.exibirDados();
-    std::cout << "Valor total do estoque: R$ " << estoque << '\n';
+
+    std::cout << "Valor total do estoque: R$ "
+              << estoque << '\n';
 
     return 0;
 }
